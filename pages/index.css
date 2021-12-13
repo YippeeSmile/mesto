@@ -11,4 +11,18 @@
 @import url(../blocks/content/content.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
+
+/*стили для блока profile*/
+
+@import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__text/profile__text.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__further/profile__further.css);
+
+/*стили для кнопок */
+
+@import url(../blocks/edit-button/edit-button.css);
+@import url(../blocks/add-button/add-button.css);
