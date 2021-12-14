@@ -1,9 +1,19 @@
-.profile_further {
+.profile__further {
     margin: 0;
     font-family: "Inter", "sans-serif";
+    color: #FFF;
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
     font-style: normal;
     padding-top: 16px;
+}
+
+@media screen and (max-width: 700px) {
+    .profile__further {
+        font-size: 14px;
+        line-height: 17px;
+        padding-top: 14px;
+        padding-bottom: 36px;
+    }
 }

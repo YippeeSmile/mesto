@@ -1,4 +1,4 @@
 .profile__text {
-    font-family: "Inter", "sans-serif";
-    color: #FFFFFF;
+    display: flex;
+    align-items: center;
 }

@@ -1,3 +1,5 @@
 .profile__avatar {
     max-width: 168px;
+    padding: 4px 26px 4px 22px;
+    /* align-self: center; */
 }

@@ -1,0 +1,20 @@
+.like-button {
+    max-width: 22px;
+    width: 100%;
+    max-height: 19px;
+    background: transparent;
+    border: none;
+    background-image: url(../../images/button/like-button.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.like-button:hover {
+    opacity: 0.6;
+}
+
+.like-button_active {
+    color: rgba(0, 0, 0, 1);
+    /* -webkit-mask: url(../../images/button/like-button.svg) no-repeat 50% 50%; */
+    /* background-color: black; */
+}

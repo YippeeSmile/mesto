@@ -1,9 +1,17 @@
 .edit-button {
     background: transparent;
-    border: 1px solid #FFFFFF;
+    border: none;
     width: 24px;
     height: 24px;
-    background-image: url(../../images/button/edit-button.png);
-    background-size: cover;
+    border: 1px solid #FFF;
+    background-image: url(../../images/button/edit-icon.svg);
+    margin-left: 25px;
+    /*background-size: contain;*/
+    background-size: 10px 10px;
+    background-position: center;
     background-repeat: no-repeat;
+}
+
+.edit-button:hover {
+    opacity: 0.6;
 }
