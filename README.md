@@ -1,7 +1,6 @@
 # Проект: Mesto
 
-**Ссылка на проект**
-
+**Ссылка на проект:**
 [https://yippeesmile.github.io/mesto/](https://yippeesmile.github.io/mesto/) 
 
 **Что получилось**
