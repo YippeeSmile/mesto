@@ -18,7 +18,7 @@ popupCloseButton.addEventListener('click', closePopup);
 
 
 // редактирование формы
-let formElement = document.querySelector('.form__input');
+let formElement = document.querySelector('.form');
 // Находим поля формы в DOM
 let nameInput = formElement.querySelector('.form__text');
 let jobInput = formElement.querySelector('.form__extra');
