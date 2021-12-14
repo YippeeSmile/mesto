@@ -2,8 +2,7 @@
 
 **Ссылка на проект**
 
-[https://yippeesmile.github.io/mesto/ "Ссылка на проект"]
-
+[https://yippeesmile.github.io/mesto/ с title](https://yippeesmile.github.io/mesto/) 
 
 **Что получилось**
 
