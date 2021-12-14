@@ -4,7 +4,6 @@
     border: 0;
     border: none;
     max-width: 358px;
-    /* height: 14px; */
     display: flex;
     flex-direction: column;
 }
