@@ -1,16 +1,16 @@
 # Проект: Mesto
 
-**ССылка на проект**
+**Ссылка на проект**
 
-[https://yippeesmile.github.io/mesto/](https://yippeesmile.github.io/mesto/ "Ссылка на проект")
+[https://yippeesmile.github.io/mesto/]("Ссылка на проект")
 
 
 **Что получилось**
 
-** HTML & CSS
-*адаптивная верстка
+** HTML & CSS**
+* адаптивная верстка
 * верстка popup
-** JS 
+** JS **
 * открыть и закрыть окно
 * редактирования input
 
