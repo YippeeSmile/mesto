@@ -19,6 +19,7 @@
 /*стили для popup*/
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__title/popup__title.css);
@@ -46,13 +47,14 @@
 @import url(../blocks/gallery/__title/gallery__title.css);
 @import url(../blocks/gallery/__description/gallery__description.css);
 
-/*стили для footer*/
-
-@import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/__copyright/footer__copyright.css);
-
 /*стили для forminput*/
 
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__text/form__text.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
+@import url(../blocks/form/__extra/form__extra.css);
+
+/*стили для footer*/
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

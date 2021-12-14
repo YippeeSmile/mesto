@@ -15,6 +15,7 @@
     border: none;
     padding: 0;
     margin-bottom: 37px;
+    cursor: pointer;
 }
 
 .form__save-button:hover {

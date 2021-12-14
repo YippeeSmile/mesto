@@ -6,7 +6,7 @@
     border: 1px solid #FFF;
     background-image: url(../../images/button/edit-icon.svg);
     margin-left: 25px;
-    /*background-size: contain;*/
+    cursor: pointer;
     background-size: 10px 10px;
     background-position: center;
     background-repeat: no-repeat;
