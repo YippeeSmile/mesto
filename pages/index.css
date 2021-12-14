@@ -41,6 +41,7 @@
 /*стили для gallery*/
 
 @import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__image/gallery__image.css);
 @import url(../blocks/gallery/__items/gallery__items.css);
 @import url(../blocks/gallery/__item/gallery__item.css);
 @import url(../blocks/gallery/__title/gallery__title.css);
@@ -48,7 +49,7 @@
 
 /*стили для forminput*/
 
-@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/form.css);
 @import url(../blocks/form/__text/form__text.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
 @import url(../blocks/form/__extra/form__extra.css);
