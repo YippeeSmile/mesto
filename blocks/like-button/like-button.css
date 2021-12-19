@@ -16,6 +16,5 @@
 
 .like-button_active {
     color: rgba(0, 0, 0, 1);
-    /* -webkit-mask: url(../../images/button/like-button.svg) no-repeat 50% 50%; */
-    /* background-color: black; */
+    background-image: url(../../images/button/active-like.svg);
 }
