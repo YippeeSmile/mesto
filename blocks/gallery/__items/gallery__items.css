@@ -12,7 +12,6 @@
     .gallery__items {
         grid-template-columns: repeat(2, 1fr);
         margin: 0 auto;
-        padding-left: 19px;
     }
 }
 
