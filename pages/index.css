@@ -2,7 +2,7 @@
 
 /*подключение шрифтов*/
 
-@import url(../vendor/fonts.css);
+@import url(../vendor/fonts/fonts.css);
 
 /*подключение основных стилей*/
 
@@ -23,20 +23,18 @@
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__input/popup__input.css);
 
 /*стили для блока profile*/
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__image/profile__image.css);
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__further/profile__further.css);
-
-/*стили для кнопок */
-
-@import url(../blocks/edit-button/edit-button.css);
-@import url(../blocks/add-button/add-button.css);
 
 /*стили для gallery*/
 
@@ -50,9 +48,7 @@
 /*стили для forminput*/
 
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__text/form__text.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
-@import url(../blocks/form/__extra/form__extra.css);
 
 /*стили для footer*/
 
