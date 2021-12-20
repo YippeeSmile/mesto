@@ -15,6 +15,8 @@ let jobInput = formElement.querySelector('.popup__input_about');
 
 function openPopup() {
     popup.classList.add('popup_opened');
+    nameInput.textContent = nameInput.value;
+    jobInput.textContent = jobInput.value;
 }
 
 function closePopup() {
@@ -23,21 +25,14 @@ function closePopup() {
 
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Так мы можем определить свою логику отправки.
-    // О том, как это делать, расскажем позже.
 
-    // Получите значение полей jobInput и nameInput из свойства value
-    nameInput.textContent = nameInput.value;
-    jobInput.textContent = jobInput.value;
-
-    // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
+    closePopup();
 }
 
 
 popupOpenButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
-popupSaveButton.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
