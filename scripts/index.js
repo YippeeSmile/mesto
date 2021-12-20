@@ -3,15 +3,15 @@
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
-const popupSaveButton = document.querySelector('.form__save-button');
+const popupSaveButton = document.querySelector('.popup__save-button');
 
 let profileElement = document.querySelector('.profile');
 let profileName = profileElement.querySelector('.profile__name');
 let profileJob = profileElement.querySelector('.profile__further');
 
-let formElement = document.querySelector('.form');
-let nameInput = formElement.querySelector('.form__name');
-let jobInput = formElement.querySelector('.form__about');
+let formElement = document.querySelector('.popup__form');
+let nameInput = formElement.querySelector('.popup__input_name');
+let jobInput = formElement.querySelector('.popup__input_about');
 
 function openPopup() {
     popup.classList.add('popup_opened');
