@@ -56,17 +56,15 @@ const inputLink = document.querySelector('.popup__input_card-link')
 
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
-//nameInput.textContent = nameInput.value;
-//jobInput.textContent = jobInput.value;
 
-//Функция удаления ex deleteHandler
+//Функция удаления карточки
 
 function handleDeleteButton(e) {
     //cardElement.remove()
     e.target.closest('.gallery__item').remove()
 }
 
-//Функция лайк ex likeHandler
+//Функция поставить лайк
 
 function handleLikeButton(e) {
     e.target.closest('.gallery__like-button').classList.toggle('like-button_field');
@@ -122,7 +120,7 @@ function closePopup(modal) {
     modal.classList.remove('popup_opened');
 }
 
-//Функция Редактирование профиля ex formSubmitHandler
+//Функция Редактирование профиля
 
 function handleSubmitButton(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
