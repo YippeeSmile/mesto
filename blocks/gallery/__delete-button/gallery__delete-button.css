@@ -13,3 +13,7 @@
     top: 20px;
     right: 20px;
 }
+
+.gallery__delete-button:hover {
+    opacity: 0.6;
+}
