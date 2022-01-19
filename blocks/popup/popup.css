@@ -8,4 +8,6 @@
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
+    transition: opacity 2s linear ease-in-out;
+    z-index: 1;
 }

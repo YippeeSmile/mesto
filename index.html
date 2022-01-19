@@ -56,14 +56,21 @@
                 </form>
             </div>
         </section>
+        <section class="popup popup_type_image">
+            <div class="popup__image-container">
+                <button class="popup__close"></button>
+                <img class="popup__image" src="">
+                <figcaption class="popup__image-name"></figcaption>
+            </div>
+        </section>
     </div>
     <template class="card-template">
-        <li class="gallery__item">
-            <button class="gallery__delete-button"></button>
+        <li class="gallery__item card">
+            <button type="button" class="gallery__delete-button"></button>
             <img class="gallery__image" src="" alt="">
             <div class="gallery__description">
                 <h2 class="gallery__title"></h2>
-                <button class="gallery__like-button"></button>
+                <button type="button" class="gallery__like-button"></button>
             </div>
         </li>
     </template>
