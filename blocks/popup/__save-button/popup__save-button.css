@@ -16,6 +16,12 @@
     cursor: pointer;
 }
 
+.popup__save-button_noactive {
+    background-color: #E5E5E5;
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+
 .popup__save-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
