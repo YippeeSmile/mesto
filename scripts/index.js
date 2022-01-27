@@ -51,7 +51,7 @@ const closeImageModal = imageModal.querySelector('.popup__close')
 const profileElement = document.querySelector('.profile');
 const profileName = profileElement.querySelector('.profile__name');
 const profileJob = profileElement.querySelector('.profile__further');
-const inputName = document.querySelector('.popup__input_card-name')
+const profileNameInput = document.querySelector('.popup__input_card-name'); //profileNameInput ex inputName
 const inputLink = document.querySelector('.popup__input_card-link')
 
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
@@ -157,7 +157,7 @@ cardEditModal.addEventListener('submit', (event) => {
     event.preventDefault()
 
     renderPlaceCard({
-        name: inputName.value,
+        name: profileNameInput.value,
         link: inputLink.value
     })
 
