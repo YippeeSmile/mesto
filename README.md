@@ -4,7 +4,7 @@
 [https://yippeesmile.github.io/mesto/](https://yippeesmile.github.io/mesto/) 
 
 **Ссылка на макет в Figma**
-[https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1](Ссылка на макет) 
+[Ссылка на макет](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1) 
 
 **Что получилось**
 
