@@ -112,12 +112,23 @@ initialCards.forEach(renderPlaceCard)
 
 function openModal(modal) {
     modal.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
 }
 
 //Функция закрытия попапа
 
 function closePopup(modal) {
     modal.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+}
+
+//Функция закрытия попап по Esc
+
+function closePopupEsc(event) {
+    if (event.keyCode === 27 || event.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
 }
 
 //Функция Редактирование профиля
@@ -167,3 +178,18 @@ cardEditModal.addEventListener('submit', (event) => {
 closeImageModal.addEventListener('click', function() {
     closePopup(imageModal)
 });
+
+//закрытие модалки Редактирования профиля на клик по overlay
+
+popupProfileEdit.addEventListener('click', (event) => {
+    if (event.target.closest('.popup__container') === null) {
+        closePopup(popupProfileEdit)
+    };
+})
+
+//закрытие модалки добавления нового места на клик по overlay
+cardEditModal.addEventListener('click', (event) => {
+    if (event.target.closest('.popup__container') === null) {
+        closePopup(cardEditModal)
+    };
+})
