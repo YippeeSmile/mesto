@@ -83,8 +83,8 @@ function createCard(cardData) {
     const deleteButton = cardElement.querySelector('.gallery__delete-button')
     const likeButton = cardElement.querySelector('.gallery__like-button')
 
-
     cardImage.src = cardData.link
+    cardImage.alt = cardData.name || cardData.alt
     cardTitle.textContent = cardData.name
 
     deleteButton.addEventListener('click', handleDeleteButton);
@@ -92,7 +92,7 @@ function createCard(cardData) {
     cardImage.addEventListener('click', () => {
         openModal(imageModal)
         popupImage.src = cardData.link;
-        popupImage.alt = cardData.alt || cardData.name;
+        popupImage.alt = cardData.name || cardData.alt;
         popupImageName.textContent = cardData.name;
     });
 
@@ -174,7 +174,6 @@ profileOpenButton.addEventListener('click', function() {
 
 openCardEditModal.addEventListener('click', function() {
     openModal(cardEditModal);
-    disableSubmitButton(submitButtonCardEditModal);
 });
 
 popupProfileEdit.addEventListener('submit', handleProfileFormSubmit);
@@ -190,6 +189,8 @@ cardEditModal.addEventListener('submit', (event) => {
 
     profileNameInput.value = '';
     inputLink.value = '';
+
+    disableSubmitButton(submitButtonCardEditModal);
 
     closePopup(cardEditModal);
 });
