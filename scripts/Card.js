@@ -1,21 +1,21 @@
 import { imageModal, popupImage, popupImageName, cardTemplate } from './constants.js';
+//import { cardTemplate } from './constants.js';
 import { openModal } from './utils.js';
 
 export class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector) { //handleCardClick
         this._name = data.name;
         this._link = data.link;
-        this._alt = data.alt;
+        this._alt = data.alt || data.name;
         this._cardSelector = cardSelector;
+        //  this._handleCardClick = handleCardClick;
     }
 
     _handleDeleteButton = (event) => {
         event.target.closest('.gallery__item').remove()
-            // this._cardElement.remove();
     }
 
     _handleLikeButton = () => {
-        // e.target.classList.toggle('like-button_field');
         this._likeButton.classList.toggle('like-button_field');
     }
 
@@ -36,10 +36,13 @@ export class Card {
         this._deleteButton.addEventListener('click', this._handleDeleteButton);
         this._likeButton.addEventListener('click', this._handleLikeButton);
         this._cardImage.addEventListener('click', this._handlepreviewImage);
+        /*this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link, this.alt)
+        });*/
     }
 
 
-    createCard = () => {
+    generateCard = () => {
         this._cardElement = cardTemplate.cloneNode(true).content
         this._cardImage = this._cardElement.querySelector('.gallery__image');
         this._cardTitle = this._cardElement.querySelector('.gallery__title')

@@ -8,7 +8,6 @@ import { FormValidator } from './FormValidator.js';
 const cardEditModal = document.querySelector('.popup_card-edit') // модалка добавление новой карточки
 const popupProfileEdit = document.querySelector('.popup_profile-edit'); //редактирование профиля
 const cardList = document.querySelector('.gallery__items')
-    //const cardTemplateSelector = document.querySelector('.card-template');
 
 // Кнопки
 const profileOpenButton = document.querySelector('.profile__edit-button');
@@ -28,6 +27,23 @@ const inputLink = document.querySelector('.popup__input_card-link')
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
 
+
+//cоздаем новые экземпляры класса
+const editFormValidation = new FormValidator(validationConfig, popupProfileEdit)
+const addCardFormValidation = new FormValidator(validationConfig, cardEditModal)
+editFormValidation.enableValidation();
+addCardFormValidation.enableValidation();
+
+/*
+function handleCardClick(link, name) {
+    popupImage.src = link;
+    popupImageName.textContent = name;
+    popupImage.alt = name;
+
+    openModal(imageModal);
+}
+*/
+
 //Функция Редактирование профиля
 function submitProfileForm(evt) {
     evt.preventDefault();
@@ -37,17 +53,18 @@ function submitProfileForm(evt) {
     closePopup(popupProfileEdit)
 }
 
-//Функция создания и отрисовки карточки
-const renderCard = (data) => {
-    const card = new Card(data, cardTemplate)
-    const cardListElement = card.createCard()
-
-    cardList.prepend(cardListElement)
+function createCard(item) {
+    const card = new Card(item, cardTemplate);
+    const cardElement = card.generateCard();
+    return cardElement;
 }
 
-initialCards.forEach((data) => {
-    renderCard(data, cardList)
-});
+function renderCard(cardItem) {
+    const CardElement = createCard(cardItem);
+    cardList.prepend(CardElement);
+}
+
+initialCards.forEach(renderCard);
 
 // заполнение и отправка модалки добавления карточки
 function submitCardEditModal(event) {
@@ -60,8 +77,6 @@ function submitCardEditModal(event) {
 
     profileNameInput.value = '';
     inputLink.value = '';
-
-    disableSubmitButton(submitButtonCardEditModal);
 
     closePopup(cardEditModal);
 }
@@ -78,29 +93,17 @@ popups.forEach((popup) => {
     })
 })
 
-//cоздаем новые экземпляры класса
-const editFormValidation = new FormValidator(validationConfig, popupProfileEdit)
-const addCardFormValidation = new FormValidator(validationConfig, cardEditModal)
-editFormValidation.enableValidation();
-addCardFormValidation.enableValidation();
-
-// Функция диактивации кнопки при добавлении новой карточки
-function disableSubmitButton(submitButtonCardEditModal) {
-    submitButtonCardEditModal.setAttribute('disabled', 'true');
-    submitButtonCardEditModal.classList.add('popup__save-button_disabled');
-}
-
 //Обработчики событий
 profileOpenButton.addEventListener('click', function() {
     nameInput.textContent = nameInput.value;
     jobInput.textContent = jobInput.value;
 
-    openModal(popupProfileEdit)
+    openModal(popupProfileEdit);
 });
 
 openCardEditModal.addEventListener('click', function() {
-    disableSubmitButton(submitButtonCardEditModal);
     openModal(cardEditModal);
+    addCardFormValidation.resetValidation();
 });
 
 popupProfileEdit.addEventListener('submit', submitProfileForm);
