@@ -37,7 +37,7 @@ const addCardFormValidation = new FormValidator(validationConfig, cardEditModal)
 editFormValidation.enableValidation();
 addCardFormValidation.enableValidation();
 
-
+//функция открытия карточик
 function handleCardClick(name, link) {
     popupImage.src = link;
     popupImageName.textContent = name;
