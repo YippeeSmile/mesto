@@ -28,6 +28,14 @@ export class FormValidator {
         this._buttonElement.disabled = true;
     }
 
+    resetValidation = () => {
+        this._toggleButton();
+
+        this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement)
+        });
+    }
+
     _enableSubmitButton = () => {
         this._buttonElement.classList.remove(this._settings.inactiveButtonClass)
         this._buttonElement.disabled = false;
@@ -52,7 +60,6 @@ export class FormValidator {
     }
 
     _toggleButton = () => {
-
         if (this._haveInvalidInput()) {
             this._disableSubmitButton();
         } else {
