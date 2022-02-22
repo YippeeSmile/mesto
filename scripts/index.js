@@ -27,6 +27,9 @@ const inputLink = document.querySelector('.popup__input_card-link')
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
 
+const imageModal = document.querySelector('.popup_type_image') // модалка картинки
+const popupImage = imageModal.querySelector('.popup__image')
+const popupImageName = imageModal.querySelector('.popup__image-name')
 
 //cоздаем новые экземпляры класса
 const editFormValidation = new FormValidator(validationConfig, popupProfileEdit)
@@ -34,15 +37,14 @@ const addCardFormValidation = new FormValidator(validationConfig, cardEditModal)
 editFormValidation.enableValidation();
 addCardFormValidation.enableValidation();
 
-/*
-function handleCardClick(link, name) {
+
+function handleCardClick(name, link) {
     popupImage.src = link;
     popupImageName.textContent = name;
     popupImage.alt = name;
 
     openModal(imageModal);
 }
-*/
 
 //Функция Редактирование профиля
 function submitProfileForm(evt) {
@@ -54,7 +56,7 @@ function submitProfileForm(evt) {
 }
 
 function createCard(item) {
-    const card = new Card(item, cardTemplate);
+    const card = new Card(item, cardTemplate, handleCardClick);
     const cardElement = card.generateCard();
     return cardElement;
 }
