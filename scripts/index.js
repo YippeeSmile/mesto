@@ -97,13 +97,13 @@ popups.forEach((popup) => {
 profileOpenButton.addEventListener('click', function() {
     nameInput.textContent = nameInput.value;
     jobInput.textContent = jobInput.value;
-
+    editFormValidation.resetValidation();
     openModal(popupProfileEdit);
 });
 
 openCardEditModal.addEventListener('click', function() {
-    openModal(cardEditModal);
     addCardFormValidation.resetValidation();
+    openModal(cardEditModal);
 });
 
 popupProfileEdit.addEventListener('submit', submitProfileForm);
