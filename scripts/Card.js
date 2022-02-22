@@ -1,6 +1,4 @@
-//import { imageModal, popupImage, popupImageName, cardTemplate } from './constants.js';
 import { cardTemplate } from './constants.js';
-import { openModal } from './utils.js';
 
 export class Card {
     constructor(data, cardSelector, handleCardClick) {
@@ -16,15 +14,8 @@ export class Card {
     }
 
     _handleLikeButton = () => {
-            this._likeButton.classList.toggle('like-button_field');
-        }
-        /*
-            _handlepreviewImage = () => {
-                popupImage.src = this._link;
-                popupImage.alt = this._name || this._alt;
-                popupImageName.textContent = this._name;
-                openModal(imageModal)
-            }*/
+        this._likeButton.classList.toggle('like-button_field');
+    }
 
     _fillCard = () => {
         this._cardImage.src = this._link;
@@ -35,12 +26,10 @@ export class Card {
     _setEventListeners = () => {
         this._deleteButton.addEventListener('click', this._handleDeleteButton);
         this._likeButton.addEventListener('click', this._handleLikeButton);
-        //this._cardImage.addEventListener('click', this._handlepreviewImage);
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link, this.alt)
         });
     }
-
 
     generateCard = () => {
         this._cardElement = cardTemplate.cloneNode(true).content
