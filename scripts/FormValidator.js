@@ -34,7 +34,7 @@ export class FormValidator {
     }
 
     _validateInput = (inputElement) => {
-        this._errorContainer = document.querySelector('#' + inputElement.id + '-error');
+        this._errorContainer = this._form.querySelector('#' + inputElement.id + '-error');
 
         if (inputElement.validity.valid) {
             this._hideError(inputElement, this._errorContainer);
