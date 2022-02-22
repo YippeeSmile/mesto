@@ -18,10 +18,10 @@ export class FormValidator {
     }
 
     _hideError = (inputElement) => {
-        const errorContainer = this._form.querySelector('#' + inputElement.id + '-error');
+        this._errorContainer = this._form.querySelector('#' + inputElement.id + '-error');
         inputElement.classList.remove(this._settings.inputErrorClass);
-        errorContainer.classList.remove(this._settings.errorClass);
-        errorContainer.textContent = '';
+        this._errorContainer.classList.remove(this._settings.errorClass);
+        this._errorContainer.textContent = '';
     }
 
     _disableSubmitButton = () => {
@@ -33,7 +33,7 @@ export class FormValidator {
         this._toggleButton();
 
         this._inputList.forEach((inputElement) => {
-            this._hideError(inputElement)
+            this._hideError(inputElement, this._errorContainer)
         });
     }
 
