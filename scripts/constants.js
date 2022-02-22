@@ -40,8 +40,8 @@ export const initialCards = [{
     }
 ];
 
-export const imageModal = document.querySelector('.popup_type_image') // модалка картинки
-export const popupImage = imageModal.querySelector('.popup__image')
-export const popupImageName = imageModal.querySelector('.popup__image-name')
+//export const imageModal = document.querySelector('.popup_type_image') // модалка картинки
+//export const popupImage = imageModal.querySelector('.popup__image')
+//export const popupImageName = imageModal.querySelector('.popup__image-name')
 
 export const cardTemplate = document.querySelector('.card-template')
