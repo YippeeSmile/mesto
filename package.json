@@ -1,0 +1,33 @@
+{
+    "name": "yandex.praktikum",
+    "version": "0.0.1",
+    "description": "learning platform",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --mode production",
+        "dev": "webpack serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YippeeSmile/mesto.git"
+    },
+    "author": "Yuliya Padzheva",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/YippeeSmile/mesto/issues"
+    },
+    "homepage": "https://github.com/YippeeSmile/mesto#readme",
+    "devDependencies": {
+        "@babel/core": "^7.17.5",
+        "@babel/preset-env": "^7.16.11",
+        "babel-loader": "^8.2.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "html-webpack-plugin": "^5.5.0",
+        "webpack": "^5.70.0",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4"
+    },
+    "dependencies": {
+        "core-js": "^3.21.1"
+    }
+}
