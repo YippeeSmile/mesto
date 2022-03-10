@@ -55,12 +55,15 @@ function submitProfileForm(evt) {
     closePopup(popupProfileEdit)
 }
 
+// функция создания карточки
 function createCard(item) {
     const card = new Card(item, cardTemplate, handleCardClick);
+
     const cardElement = card.generateCard();
     return cardElement;
 }
 
+//функция отрисовки картчки renderer
 function renderCard(cardItem) {
     const CardElement = createCard(cardItem);
     cardList.prepend(CardElement);
