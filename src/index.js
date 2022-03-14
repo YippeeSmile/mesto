@@ -1,7 +1,8 @@
-import { Card } from './Card.js';
-import { openModal, closePopup } from './utils.js';
-import { initialCards, cardTemplate, validationConfig } from './constants.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from './scripts/Card.js';
+import { openModal, closePopup } from './scripts/utils.js';
+import { initialCards, cardTemplate, validationConfig } from './scripts/constants.js';
+import { FormValidator } from './scripts/FormValidator.js';
+import './pages/index.css';
 
 //ищем модалки 
 
