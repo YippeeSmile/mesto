@@ -1,7 +1,7 @@
 # Проект: Mesto
 
 **Ссылка на проект:**
-[https://yippeesmile.github.io/mesto/](https://yippeesmile.github.io/mesto/) 
+[https://github.com/YippeeSmile/mesto](https://github.com/YippeeSmile/mesto) 
 
 **[Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)**
 
