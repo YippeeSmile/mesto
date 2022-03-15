@@ -7,7 +7,7 @@ export class UserInfo {
     getUserInfo() {
             return {
                 name: this._nameElement.textContent,
-                job: this._jobElement
+                job: this._jobElement.textContent
             }
         }
         //метод принимает новые данные пользователя и добавляет их на страницу
