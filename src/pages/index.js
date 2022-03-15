@@ -1,4 +1,4 @@
-import './index.css';
+import '../pages/index.css';
 import { Card } from '../components/Card.js';
 import { initialCards, cardTemplate, validationConfig } from '../components/constants.js';
 import { FormValidator } from '../components/FormValidator.js';
