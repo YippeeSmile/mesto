@@ -39,5 +39,3 @@ export const initialCards = [{
         alt: 'озеро Байкал зимой'
     }
 ];
-
-export const cardTemplate = document.querySelector('.card-template')

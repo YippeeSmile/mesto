@@ -1,13 +1,16 @@
-import { cardTemplate } from './constants.js';
-
 export class Card {
     constructor(data, cardSelector, handleCardClick) {
-        this._name = data.name;
-        this._link = data.link;
-        this._alt = data.alt || data.name;
-        this._cardSelector = cardSelector;
-        this._handleCardClick = handleCardClick;
-    }
+            this._name = data.name;
+            this._link = data.link;
+            this._alt = data.alt || data.name;
+            this._cardSelector = cardSelector;
+            this._handleCardClick = handleCardClick;
+            this._cardTemplate = document.querySelector('.card-template');
+        }
+        /* _getTemplate() {
+             const cardItem = this._cardTemplate.cloneNode(true).content;
+             return cardItem;
+         }*/
 
     _handleDeleteButton = (event) => {
         event.target.closest('.gallery__item').remove()
@@ -32,7 +35,7 @@ export class Card {
     }
 
     generateCard = () => {
-        this._cardElement = cardTemplate.cloneNode(true).content
+        this._cardElement = this._cardTemplate.cloneNode(true).content;
         this._cardImage = this._cardElement.querySelector('.gallery__image');
         this._cardTitle = this._cardElement.querySelector('.gallery__title')
         this._likeButton = this._cardElement.querySelector('.gallery__like-button');

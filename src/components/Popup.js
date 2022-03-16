@@ -18,15 +18,12 @@ export default class Popup {
         }
     }
     setEventListeners() {
-        //закрытие на крестик
-        const closeButton = this._popup.querySelector('.popup__close');
-        closeButton.addEventListener('click', () => this.close());
-        // закрытие по оверлэй
+        // закрытие по оверлэй и на крестик
         this._popup.addEventListener('mousedown', (evt) => {
             if (evt.target.classList.contains(this._popupOpenClass)) {
                 this.close();
             }
-            if (evt.target.classList.contains(this._popupOpenClass)) {
+            if (evt.target.classList.contains('popup__close')) {
                 this.close();
             }
         })
