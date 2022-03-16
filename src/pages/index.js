@@ -1,6 +1,6 @@
 import '../pages/index.css';
 import { Card } from '../components/Card.js';
-import { initialCards, cardTemplate, validationConfig } from '../components/constants.js';
+import { initialCards, validationConfig } from '../utils/constants.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
@@ -8,9 +8,8 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 
 //ищем модалки 
-const cardEditModal = document.querySelector('.popup_card-edit') // модалка добавление новой карточки
 const popupProfileEdit = document.querySelector('.popup_profile-edit'); //редактирование профиля
-const cardList = document.querySelector('.gallery__items')
+const cardList = document.querySelector('.gallery__items');
 
 //кнопки
 const profileOpenButton = document.querySelector('.profile__edit-button');
@@ -23,11 +22,23 @@ const profileJob = profileElement.querySelector('.profile__further');
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
 
-//cоздаем новые экземпляры класса
-const editFormValidation = new FormValidator(validationConfig, popupProfileEdit)
-const addCardFormValidation = new FormValidator(validationConfig, cardEditModal)
-editFormValidation.enableValidation();
-addCardFormValidation.enableValidation();
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (validationConfig) => {
+    const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(validationConfig, formElement)
+            // получаем данные из атрибута `name` у формы
+        const formName = formElement.getAttribute('name')
+
+        // вот тут в объект записываем под именем формы
+        formValidators[formName] = validator;
+        validator.enableValidation();
+    });
+};
+
+enableValidation(validationConfig);
 
 //получаем данные пользователя
 const userInfo = new UserInfo({
@@ -38,11 +49,11 @@ const userInfo = new UserInfo({
 //Функция Редактирование профиля
 const submitProfileForm = (data) => {
 
-    const { username, job } = data;
+    const { username, userjob } = data;
     profileName.textContent = username;
-    profileJob.textContent = job;
+    profileJob.textContent = userjob;
 
-    userInfo.setUserInfo(username, job);
+    userInfo.setUserInfo(username, userjob);
 
     editProfilePopup.close();
 }
@@ -60,7 +71,7 @@ const submitCardEditModal = (data) => {
 }
 
 const createCard = (data) => {
-    const card = new Card(data, cardTemplate, () => {
+    const card = new Card(data, '.card-template', () => {
         imagePopup.open(data.name, data.link)
     });
     const cardElement = card.generateCard();
@@ -68,8 +79,8 @@ const createCard = (data) => {
 }
 
 function renderCard(cardItem) {
-    const CardElement = createCard(cardItem);
-    cardList.prepend(CardElement);
+    const cardElement = createCard(cardItem);
+    cardList.prepend(cardElement);
 }
 
 //создаем новый экземляр Section и размещаем карточки из массива
@@ -96,14 +107,15 @@ section.renderItems();
 profileOpenButton.addEventListener('click', () => {
 
     const data = userInfo.getUserInfo();
+    console.log(data)
     nameInput.value = data.name
     jobInput.value = data.job
 
-    editFormValidation.resetValidation();
+    formValidators['profile-form'].resetValidation();
     editProfilePopup.open();
 });
 
 openCardEditModal.addEventListener('click', function() {
-    addCardFormValidation.resetValidation();
+    formValidators['card-form'].resetValidation();
     addCardPopup.open();
 });
