@@ -32,7 +32,9 @@
 .gallery__item{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;max-height:361px;max-width:282px;overflow:hidden;position:relative}
 .gallery__title{font-family:Inter,"sans-serif";font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;z-index:1}
 .gallery__description{display:flex;justify-content:space-between;margin:25px 15px 31px 21px;max-width:246px}
-.gallery__like-button{background:transparent;background-image:url(image/like-button.0e390048c288271ab07f.svg);background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;max-height:19px;max-width:22px;width:100%}.gallery__like-button:hover{opacity:.6}
+.gallery__description_side-right{align-items:center;display:flex;flex-direction:column}
+.gallery__like-button{background:transparent;background-image:url(image/like-button.0e390048c288271ab07f.svg);background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;height:19px;margin-bottom:3px;width:22px}.gallery__like-button:hover{opacity:.6}
+.gallery__like-button_count{font-family:Inter;font-size:13px;font-weight:400;height:13px;width:10px}
 .like-button_field{background-image:url(image/like-button-field.e787eeb70bb65b7b453a.svg)}
 .gallery__delete-button{background:transparent;background-image:url(image/trash.823b0cf1b0b7e9cb7cad.svg);background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;height:100%;max-height:19px;max-width:18px;position:absolute;right:20px;top:20px;width:100%}.gallery__delete-button:hover{opacity:.6}
 .footer{margin:0 auto;max-width:880px}
