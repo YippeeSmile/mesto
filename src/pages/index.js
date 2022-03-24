@@ -6,21 +6,50 @@ import Section from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { api } from '../components/Api.js';
 
 //ищем модалки 
 const popupProfileEdit = document.querySelector('.popup_profile-edit'); //редактирование профиля
 const cardList = document.querySelector('.gallery__items');
 
+//const openAvatarEditModal = document.querySelector('.popup_avatar-edit');
+
 //кнопки
 const profileOpenButton = document.querySelector('.profile__edit-button');
 const openCardEditModal = document.querySelector('.profile__add-button');
+const openAvatarEditButton = document.querySelector('.profile__avatar_edit-button');
+
 
 //инпуты
-const profileElement = document.querySelector('.profile');
-const profileName = profileElement.querySelector('.profile__name');
-const profileJob = profileElement.querySelector('.profile__further');
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
+
+const cardSelector = '.card-template';
+
+let userId;
+
+api.getProfile()
+    .then(res => {
+
+        userInfo.setUserInfo(res.name, res.about, res.avatar)
+
+        userId = res._id
+    })
+
+api.getCards()
+    .then(cardWrap => {
+        cardWrap.forEach(data => {
+            const card = createCard({
+                name: data.name,
+                link: data.link,
+                likes: data.likes,
+                id: data._id,
+                userId: userId,
+                ownerId: data.owner._id
+            })
+            section.addItem(card)
+        })
+    })
 
 const formValidators = {}
 
@@ -43,37 +72,101 @@ enableValidation(validationConfig);
 //получаем данные пользователя
 const userInfo = new UserInfo({
     profileNameSelector: '.profile__name',
-    profileJobSelector: '.profile__further'
+    profileJobSelector: '.profile__further',
+    profileAvatarSelector: '.profile__image'
 });
+
+const submitAvatarEditModal = (data) => {
+    renderLoading(true)
+    const { avatarlink } = data;
+
+    api.changeAvatar(avatarlink)
+        .then(res => {
+            userInfo.setUserInfo(res.name, res.about, res.avatar);
+            avatarPopup.close()
+        })
+        .catch((err) => {
+            renderError(`Ошибка: ${err}`)
+        })
+        .finally(() => {
+            renderLoading(false)
+        })
+}
 
 //Функция Редактирование профиля
 const submitProfileForm = (data) => {
-
+    renderLoading(true)
     const { username, userjob } = data;
-    profileName.textContent = username;
-    profileJob.textContent = userjob;
 
-    userInfo.setUserInfo(username, userjob);
+    api.editProfile(username, userjob)
+        .then((res) => {
 
-    editProfilePopup.close();
+            userInfo.setUserInfo(res.name, res.about, res.avatar);
+            editProfilePopup.close();
+        })
+        .catch((err) => {
+            renderError(`Ошибка: ${err}`)
+        })
+        .finally(() => {
+            renderLoading(false)
+        })
 }
 
 // заполнение и отправка модалки добавления карточки
 const submitCardEditModal = (data) => {
-    const card = createCard({
-        name: data.name,
-        link: data.link
-    })
-
-    section.addItem(card);
-
-    addCardPopup.close();
+    renderLoading(true)
+    api.addCard(data.name, data.link)
+        .then(res => {
+            const card = createCard({
+                name: res.name,
+                link: res.link,
+                likes: res.likes,
+                id: res._id,
+                userId: userId,
+                ownerId: res.owner._id
+            })
+            section.addItem(card);
+            addCardPopup.close();
+        })
+        .catch((err) => {
+            renderError(`Ошибка: ${err}`)
+        })
+        .finally(() => {
+            renderLoading(false)
+        })
 }
 
 const createCard = (data) => {
-    const card = new Card(data, '.card-template', () => {
-        imagePopup.open(data.name, data.link)
-    });
+    const card = new Card(
+        data,
+        '.card-template',
+        () => {
+            imagePopup.open(data.name, data.link)
+        },
+        (id) => {
+            confirmPopup.open()
+            confirmPopup.changeSubmitHandler(() => {
+                api.deleteCard(id)
+                    .then(res => {
+                        card.deleteCard()
+                        confirmPopup.close()
+                    })
+            })
+        },
+        (id) => {
+            if (card.isLiked()) {
+                api.deleteLike(id)
+                    .then(res => {
+                        card.setLikes(res.likes)
+                    })
+            } else {
+                api.addLike(id)
+                    .then(res => {
+                        card.setLikes(res.likes)
+                    })
+            }
+        },
+    );
     const cardElement = card.generateCard();
     return cardElement;
 }
@@ -84,10 +177,8 @@ function renderCard(cardItem) {
 }
 
 //создаем новый экземляр Section и размещаем карточки из массива
-const section = new Section({
-    items: initialCards,
-    renderer: renderCard
-}, '.gallery__items');
+
+const section = new Section({ items: [], renderer: renderCard }, '.gallery__items');
 
 //ImagePopup новый экземляр класса - открытие картинки
 const imagePopup = new PopupWithImage('.popup_type_image');
@@ -101,13 +192,19 @@ addCardPopup.setEventListeners();
 const editProfilePopup = new PopupWithForm('.popup_profile-edit', submitProfileForm);
 editProfilePopup.setEventListeners();
 
+const confirmPopup = new PopupWithForm('.popup_card-delete');
+confirmPopup.setEventListeners();
+
+const avatarPopup = new PopupWithForm('.popup_avatar-edit', submitAvatarEditModal);
+
+avatarPopup.setEventListeners();
+
 section.renderItems();
 
 //Обработчики событий
 profileOpenButton.addEventListener('click', () => {
 
     const data = userInfo.getUserInfo();
-    console.log(data)
     nameInput.value = data.name
     jobInput.value = data.job
 
@@ -119,3 +216,19 @@ openCardEditModal.addEventListener('click', function() {
     formValidators['card-form'].resetValidation();
     addCardPopup.open();
 });
+
+openAvatarEditButton.addEventListener('click', () => {
+    formValidators['avatar-form'].resetValidation();
+    avatarPopup.open();
+})
+
+function renderLoading(isLoading) {
+    const buttons = Array.from(document.querySelectorAll('.popup__save-button'))
+    buttons.forEach((button) => {
+        if (isLoading) {
+            button.textContent = "Сохранение..."
+        } else {
+            button.textContent = button.value;
+        }
+    })
+}

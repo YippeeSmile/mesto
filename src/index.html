@@ -15,7 +15,10 @@
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar"><img src="<%=require('./images/сousteau.jpg')%>" class="profile__image" alt="Аватар"></div>
+                <div class="profile__avatar">
+                    <button class="profile__avatar_edit-button"></button>
+                    <img src="<%=require('./images/сousteau.jpg')%>" class="profile__image" alt="Аватар">
+                </div>
                 <div class="profile__info">
                     <div class="profile__text">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -42,7 +45,7 @@
                     <span id="username-error" class="error-message error-message_visible"></span>
                     <input id="usertext" required name="userjob" value="Исследователь океана" placeholder="О себе" minlength="2" maxlength="200" class="popup__input popup__input_about">
                     <span id="usertext-error" class="error-message error-message_visible"></span>
-                    <button type="submit" class="popup__save-button popup__save-button_place_profile-edit">Сохранить</button>
+                    <button type="submit" class="popup__save-button popup__save-button_place_profile-edit" value="Сохранить">Сохранить</button>
                 </form>
             </div>
         </section>
@@ -55,7 +58,16 @@
                     <span id="cardname-error" class="error-message error-message_visible"></span>
                     <input id="cardlink" type="url" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_card-link" required>
                     <span id="cardlink-error" class="error-message error-message_visible"></span>
-                    <button type="submit" class="popup__save-button popup__save-button_place_card-edit">Создать</button>
+                    <button type="submit" class="popup__save-button popup__save-button_place_card-edit" value="Создать">Создать</button>
+                </form>
+            </div>
+        </section>
+        <section class="popup popup_card-delete">
+            <div class="popup__container">
+                <button class="popup__close"></button>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <form class="popup__form" name="card-form" novalidate>
+                    <button type="submit" class="popup__save-button" value="Да">Да</button>
                 </form>
             </div>
         </section>
@@ -66,6 +78,17 @@
                 <figcaption class="popup__image-name"></figcaption>
             </div>
         </section>
+        <section class="popup popup_avatar-edit">
+            <div class="popup__container">
+                <button class="popup__close"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__form" name="avatar-form" novalidate>
+                    <input id="avatarlink" type="url" name="avatarlink" placeholder="Ссылка на картинку" class="popup__input popup__input_avatar-link" required>
+                    <span id="avatarlink-error" class="error-message error-message_visible"></span>
+                    <button type="submit" class="popup__save-button popup__save-button_place_avatar-change" value="Сохранить">Сохранить</button>
+                </form>
+            </div>
+        </section>
     </div>
     <template class="card-template">
         <li class="gallery__item card">
@@ -73,7 +96,10 @@
             <img class="gallery__image" src="#" alt="">
             <div class="gallery__description">
                 <h2 class="gallery__title"></h2>
+                <div class="gallery__description_side-right">
                 <button type="button" class="gallery__like-button"></button>
+                <span class="gallery__like-button_count"></span>
+                </div>
             </div>
         </li>
     </template>
