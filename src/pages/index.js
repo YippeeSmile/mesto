@@ -17,7 +17,7 @@ const cardList = document.querySelector('.gallery__items');
 //кнопки
 const profileOpenButton = document.querySelector('.profile__edit-button');
 const openCardEditModal = document.querySelector('.profile__add-button');
-const openAvatarEditButton = document.querySelector('.profile__avatar_edit-button');
+const openAvatarEditButton = document.querySelector('.profile__avatar-button');
 
 
 //инпуты

@@ -38,7 +38,7 @@
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__further/profile__further.css);
-@import url(../blocks/profile/__avatar/_edit-button/profile__avatar_edit-button.css);
+@import url(../blocks/profile/__avatar-button/profile__avatar-button.css);
 
 /*стили для gallery*/
 
