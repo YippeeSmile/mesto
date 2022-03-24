@@ -16,10 +16,16 @@ export class PopupWithForm extends Popup {
         });
         return this._inputValues;
     }
+
+    changeSubmitHandler(newSubmitHandler) {
+        this._handleFormSubmit = newSubmitHandler;
+    }
+
     setEventListeners() {
         super.setEventListeners();
 
-        this._form.addEventListener('submit', () => {
+        this._form.addEventListener('submit', (e) => {
+            e.preventDefault();
             this._handleFormSubmit(this._getInputValues());
         })
     }
