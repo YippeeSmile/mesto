@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.profile__avatar:hover .profile__avatar_edit-button {
+.profile__avatar:hover .profile__avatar-button {
     opacity: 1;
     transition: opacity .3s;
 }
