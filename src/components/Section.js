@@ -7,6 +7,7 @@ export default class Section {
 
     //метод, перебирает массив данных items и вызывает для каждого элемента метод addItem.
     renderItems(data) {
+        this._items = data;
         data.forEach(item => {
             this._renderer(item, this._container);
         });
