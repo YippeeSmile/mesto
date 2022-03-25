@@ -22,7 +22,7 @@ export class Card {
     deleteCard() {
         //event.target.closest('.gallery__item').remove()
         this._cardElement.remove();
-        // this._cardElement = null;
+        this._cardElement = null;
     }
 
     isLiked() {
@@ -57,6 +57,7 @@ export class Card {
 
         this.setLikes(this._likes);
 
+
         if (this._ownerId !== this._userId) {
             this._deleteButton.style.display = 'none'
         }
@@ -66,7 +67,7 @@ export class Card {
 
         this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
 
-        this._likeButton.addEventListener('click', this._handleLikeClick(this._id));
+        this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id));
 
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link, this.alt)

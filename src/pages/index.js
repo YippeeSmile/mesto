@@ -1,54 +1,37 @@
 import '../pages/index.css';
 import { Card } from '../components/Card.js';
-import { initialCards, validationConfig } from '../utils/constants.js';
+import { validationConfig } from '../utils/constants.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm';
 
 //ищем модалки 
 const popupProfileEdit = document.querySelector('.popup_profile-edit'); //редактирование профиля
-const cardList = document.querySelector('.gallery__items');
-
-//const openAvatarEditModal = document.querySelector('.popup_avatar-edit');
 
 //кнопки
 const profileOpenButton = document.querySelector('.profile__edit-button');
 const openCardEditModal = document.querySelector('.profile__add-button');
 const openAvatarEditButton = document.querySelector('.profile__avatar-button');
 
-
 //инпуты
 const nameInput = popupProfileEdit.querySelector('.popup__input_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_about');
 
-const cardSelector = '.card-template';
-
 let userId;
 
-api.getProfile()
-    .then(res => {
-
-        userInfo.setUserInfo(res.name, res.about, res.avatar)
-
+Promise.all([api.getProfile(), api.getCards()])
+    .then(([res, data]) => {
+        userInfo.setUserInfo(res.name, res.about, res.avatar);
         userId = res._id
+        data.reverse()
+        cardsSection.renderItems(data)
     })
-
-api.getCards()
-    .then(cardWrap => {
-        cardWrap.forEach(data => {
-            const card = createCard({
-                name: data.name,
-                link: data.link,
-                likes: data.likes,
-                id: data._id,
-                userId: userId,
-                ownerId: data.owner._id
-            })
-            section.addItem(card)
-        })
+    .catch((err) => {
+        renderError(`Ошибка: ${err}`)
     })
 
 const formValidators = {}
@@ -76,6 +59,25 @@ const userInfo = new UserInfo({
     profileAvatarSelector: '.profile__image'
 });
 
+
+//создаем новую секцию для карточек
+const cardsSection = new Section({
+    items: [],
+    renderer: (data) => {
+        const card = createCard({
+            name: data.name,
+            link: data.link,
+            likes: data.likes,
+            id: data._id,
+            userId: userId,
+            ownerId: data.owner._id
+        })
+        cardsSection.addItem(card);
+    },
+    containerSelector: '.gallery__items'
+});
+
+//функция редактирования аватара
 const submitAvatarEditModal = (data) => {
     renderLoading(true)
     const { avatarlink } = data;
@@ -115,7 +117,7 @@ const submitProfileForm = (data) => {
 // заполнение и отправка модалки добавления карточки
 const submitCardEditModal = (data) => {
     renderLoading(true)
-    api.addCard(data.name, data.link)
+    api.addCard(data.name, data.link) //data.like 
         .then(res => {
             const card = createCard({
                 name: res.name,
@@ -125,7 +127,7 @@ const submitCardEditModal = (data) => {
                 userId: userId,
                 ownerId: res.owner._id
             })
-            section.addItem(card);
+            cardsSection.addItem(card);
             addCardPopup.close();
         })
         .catch((err) => {
@@ -136,6 +138,7 @@ const submitCardEditModal = (data) => {
         })
 }
 
+//создаем и возвращаем готовую карточку
 const createCard = (data) => {
     const card = new Card(
         data,
@@ -145,11 +148,14 @@ const createCard = (data) => {
         },
         (id) => {
             confirmPopup.open()
-            confirmPopup.changeSubmitHandler(() => {
+            confirmPopup.submitHandler(() => {
                 api.deleteCard(id)
                     .then(res => {
                         card.deleteCard()
                         confirmPopup.close()
+                    })
+                    .catch((err) => {
+                        renderError(`Ошибка: ${err}`)
                     })
             })
         },
@@ -159,10 +165,16 @@ const createCard = (data) => {
                     .then(res => {
                         card.setLikes(res.likes)
                     })
+                    .catch((err) => {
+                        renderError(`Ошибка: ${err}`)
+                    })
             } else {
                 api.addLike(id)
                     .then(res => {
                         card.setLikes(res.likes)
+                    })
+                    .catch((err) => {
+                        renderError(`Ошибка: ${err}`)
                     })
             }
         },
@@ -170,15 +182,6 @@ const createCard = (data) => {
     const cardElement = card.generateCard();
     return cardElement;
 }
-
-function renderCard(cardItem) {
-    const cardElement = createCard(cardItem);
-    cardList.prepend(cardElement);
-}
-
-//создаем новый экземляр Section и размещаем карточки из массива
-
-const section = new Section({ items: [], renderer: renderCard }, '.gallery__items');
 
 //ImagePopup новый экземляр класса - открытие картинки
 const imagePopup = new PopupWithImage('.popup_type_image');
@@ -192,14 +195,13 @@ addCardPopup.setEventListeners();
 const editProfilePopup = new PopupWithForm('.popup_profile-edit', submitProfileForm);
 editProfilePopup.setEventListeners();
 
-const confirmPopup = new PopupWithForm('.popup_card-delete');
+//форма подтвержает удаление карточки
+const confirmPopup = new PopupWithConfirm('.popup_card-delete');
 confirmPopup.setEventListeners();
 
+//модалка аватар
 const avatarPopup = new PopupWithForm('.popup_avatar-edit', submitAvatarEditModal);
-
 avatarPopup.setEventListeners();
-
-section.renderItems();
 
 //Обработчики событий
 profileOpenButton.addEventListener('click', () => {
@@ -232,3 +234,6 @@ function renderLoading(isLoading) {
         }
     })
 }
+
+//рендерим секцию карточек
+cardsSection.renderItems();
