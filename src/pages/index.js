@@ -214,8 +214,9 @@ profileOpenButton.addEventListener('click', () => {
     editProfilePopup.open();
 });
 
-openCardEditModal.addEventListener('click', function() {
-    formValidators['card-form'].resetValidation();
+openCardEditModal.addEventListener('click', () => {
+
+    formValidators['edit-card'].resetValidation();
     addCardPopup.open();
 });
 
