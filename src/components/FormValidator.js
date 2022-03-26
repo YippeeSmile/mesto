@@ -30,11 +30,11 @@ export class FormValidator {
     }
 
     resetValidation = () => {
-        this._toggleButton();
 
         this._inputList.forEach((inputElement) => {
             this._hideError(inputElement, this._errorContainer)
         });
+        this._toggleButton();
     }
 
     _enableSubmitButton = () => {
