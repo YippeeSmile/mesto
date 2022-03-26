@@ -234,6 +234,5 @@ function renderLoading(isLoading) {
         }
     })
 }
-
 //рендерим секцию карточек
-cardsSection.renderItems();
+//cardsSection.renderItems();
