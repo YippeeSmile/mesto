@@ -1,12 +1,10 @@
 # [Mesto](https://yippeesmile.github.io/mesto/) 
 
-Учебный проект
+Учебный проект. [Ссылка на макеты](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
-**[Ссылка на макеты](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)**
+**Что было сделано в данном проекте:**
 
-**Что получилось**
-
-**HTML & CSS**
+*HTML & CSS*
 * методология БЭМ
 * адаптивная верстка 
 * попап редактирование профиля
@@ -16,7 +14,7 @@
 * плавность открытия форм
 * плавность добавления лайка к фото
 
-**JS**
+*JS*
 * Функции открытия и закрытия popup
 * редактирования информации input
 * Функция добавления новой карточки места
